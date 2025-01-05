@@ -42,7 +42,7 @@ public class PeopleController {
         return "people/new";
     }
 
-    @PostMapping()
+    @PostMapping() // ручной вариант данного метод в файле text1
     public String create(@ModelAttribute("person") Person person) {
 
         personDAO.save(person);
