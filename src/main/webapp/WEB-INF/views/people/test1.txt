@@ -1,0 +1,17 @@
+@PostMapping()
+public String create(@RequestParam("name") String name,
+    @RequestParam("age") int age,
+    @RequestParam("email") String email,
+    Model model) {
+
+Person person = new Person();
+
+person.setName(name);
+person.setAge(age);
+person.setEmail(email);
+
+model.addAttribute("person", person);
+
+return "successPage";
+
+}
