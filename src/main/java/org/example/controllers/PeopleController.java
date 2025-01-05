@@ -17,7 +17,7 @@ public class PeopleController {
     public PeopleController(PersonDAO personDAO) {
         this.personDAO = personDAO;
     }
-
+    // гет запрос для отображения людей
     @GetMapping()
     public String index(Model model) {
         // получим вех людей из DAO и передаем в представление
