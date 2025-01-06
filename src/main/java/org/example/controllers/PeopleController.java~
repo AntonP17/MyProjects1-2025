@@ -17,7 +17,7 @@ public class PeopleController {
     public PeopleController(PersonDAO personDAO) {
         this.personDAO = personDAO;
     }
-
+    // гет запрос для отображения людей
     @GetMapping()
     public String index(Model model) {
         // получим вех людей из DAO и передаем в представление
@@ -47,6 +47,22 @@ public class PeopleController {
 
         personDAO.save(person);
         return "redirect:/people";
+
+    }
+
+    // форма для редактирования человека по id
+    // обязательно прописывать аннотацию @PathVariable потмоу что мы конкретного человека по id меняем
+    @GetMapping("/{id}/edit")
+    public String edit(Model model,@PathVariable("id") int id) {
+
+        model.addAttribute("person", personDAO.show(id));
+        return "people/edit";
+    }
+    // тут естественно Path запрос для редактирование (как POst только тут не добавляет человека в спикок а меняет уже существующего человека)
+    // чтобы каждый раз не путатся с моделью , надо понять механизм передачи в модель ключ-значение
+    // тут пример ключ "person" - значение обьект класса Person
+    @PatchMapping("/{id}")
+    public String update(@ModelAttribute("person") Person person,@PathVariable("id") int id) {
 
     }
 }

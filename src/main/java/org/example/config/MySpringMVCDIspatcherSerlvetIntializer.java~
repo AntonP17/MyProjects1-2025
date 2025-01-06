@@ -23,7 +23,6 @@ public class MySpringMVCDIspatcherSerlvetIntializer extends AbstractAnnotationCo
         return new String[] {"/"}; // какие URL будут обрабатываться т.е через слеш
     }
 
-    // импортируем метод для фильтра
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         super.onStartup(servletContext);
