@@ -10,8 +10,7 @@
 <p th:text="${person.getId()}">VALUE </p>
 <p th:text="${person.getAge()}">VALUE</p>
 <p th:text="${person.getEmail()}">VALUE</p>
-<br/>
-<hr/>
+
 <!-- вот тут кнопка для редактирования , происходит переход на страницу для редактирования конкретнго человека-->
 <a th:href="@{/people/{id}/edit(id=${person.getId()})}">Edit</a>
 

@@ -67,8 +67,9 @@ public class PeopleController {
         return "redirect:/people";
     }
 
-    ДОБАВИТЬ DELETE запрос , форму создавать новую не надо , надо обновить существующую форму 
-    в форме человекк по id добавить кнопку для редактирования человека , 
-удаления (форма похожа только посенять метид на удаление , для полей тоже поперять аналогично
-    
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable("id") int id) {
+        personDAO.delete(id);
+        return "redirect:/people";
+    }
 }

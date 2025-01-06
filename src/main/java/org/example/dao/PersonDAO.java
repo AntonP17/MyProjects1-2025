@@ -14,10 +14,11 @@ public class PersonDAO {
     {
         people = new ArrayList<>();
 
-        people.add(new Person(++PERSON_COUNT,"Ivan"));
-        people.add(new Person(++PERSON_COUNT,"Petr"));
-        people.add(new Person(++PERSON_COUNT,"Sergey"));
-        people.add(new Person(++PERSON_COUNT,"Vladimir"));
+        people.add(new Person(1, "Ivan", 24, "jPw0x@example.com"));
+        people.add(new Person(2, "Petr", 24, "jPw0x@example.com"));
+        people.add(new Person(3, "Sveta", 24, "jPw0x@example.com"));
+        people.add(new Person(4, "Masha", 24, "jPw0x@example.com"));
+        people.add(new Person(5, "Oleg", 24, "jPw0x@example.com"));
     }
 
     public List<Person> index() {
@@ -38,6 +39,15 @@ public class PersonDAO {
 
     public void update(int id, Person updatedPerson) {
         Person personToBeUpdated = show(id);
+
         personToBeUpdated.setName(updatedPerson.getName());
+        personToBeUpdated.setAge(updatedPerson.getAge());
+        personToBeUpdated.setEmail(updatedPerson.getEmail());
+    }
+
+    public void delete(int id) {
+        // тут стандартная лямбда при условии если человек нашелся по данному айди то происходить удаление
+        // у каждого человека вызываем метод getID , если true то удаляется из списка
+        people.removeIf(person -> person.getId() == id);
     }
 }

@@ -32,7 +32,7 @@ public class MySpringMVCDIspatcherSerlvetIntializer extends AbstractAnnotationCo
     // тут мы создаем фильтр в спринге для обработки скрытого поля в html форме
     private void registerHiddenFieldFilter(ServletContext aContext) {
         aContext.addFilter("hiddenHttpMethodFilter",
-                new HiddenHttpMethodFilter()).addMappingForUrlPatterns(null, true, null, null);
+                new HiddenHttpMethodFilter()).addMappingForUrlPatterns(null, true, "/*");
     }
 
 }
