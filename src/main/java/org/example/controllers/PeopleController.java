@@ -1,10 +1,12 @@
 package org.example.controllers;
 
+import jakarta.validation.Valid;
 import org.example.dao.PersonDAO;
 import org.example.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -43,7 +45,11 @@ public class PeopleController {
     }
 
     @PostMapping() // ручной вариант данного метод в файле text1
-    public String create(@ModelAttribute("person") Person person) {
+    public String create(@ModelAttribute("person") @Valid Person person,  // добавим валидацию для полей класса Person
+                         BindingResult bindingResult) { // так как могут быть ошибки то они должны хранится в BindingResult
+
+        if (bindingResult.hasErrors())
+            return "people/new";
 
         personDAO.save(person);
         return "redirect:/people";
@@ -62,7 +68,12 @@ public class PeopleController {
     // чтобы каждый раз не путатся с моделью , надо понять механизм передачи в модель ключ-значение
     // тут пример ключ "person" - значение обьект класса Person
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("person") Person person,@PathVariable("id") int id) {
+    public String update(@ModelAttribute("person") @Valid Person person,
+                        BindingResult bindingResult, @PathVariable("id") int id) {
+
+        if (bindingResult.hasErrors())
+            return "people/edit";
+
         personDAO.update(id, person);
         return "redirect:/people";
     }
