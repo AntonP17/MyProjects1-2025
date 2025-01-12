@@ -116,7 +116,7 @@ public class PersonDAO {
             preparedStatement.setString(3, updatedPerson.getEmail());
             preparedStatement.setInt(4, id);
 
-           preparedStatement.executeUpdate(); // +
+           preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -133,8 +133,7 @@ public class PersonDAO {
 
             preparedStatement.setInt(1, id);
 
-            preparedStatement.executeUpdate(); // +
-
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }

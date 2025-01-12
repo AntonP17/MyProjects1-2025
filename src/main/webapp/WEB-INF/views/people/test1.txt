@@ -15,3 +15,21 @@ model.addAttribute("person", person);
 return "successPage";
 
 }
+
+МЕТОД SAVE , запрос SQL
+String SQL = "INSERT INTO Person VALUES(" + 1 + ",'" + person.getName()  +
+            "'," + person.getAge() + ",'" + person.getEmail() + "')"; // так писать нежелательно во избежание SQL инъекции
+            // (у нас пользователь может сломать приложение)
+
+            // INSERT INTO Person VALUES(1,'Tom', 18, 'tom@ya.ru')
+
+// SQL команды
+create table Person(
+    id int,
+    name varchar,
+    age int,
+    email varchar
+) SQL команда дял создания таблицы
+
+insert into person(тут можно указать колонки куда втсавить данные ,
+либо просто в values сразу во все) values(1, 'Tom', 18, 'tom@ya.ru'); SQL команда дял вставки данных
