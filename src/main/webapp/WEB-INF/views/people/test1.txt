@@ -25,7 +25,7 @@ String SQL = "INSERT INTO Person VALUES(" + 1 + ",'" + person.getName()  +
 
 // SQL команды
 create table Person(
-    id int,
+    id int, // SERIAL PRIMARY KEY указывает что это первичный ключ уникальный
     name varchar,
     age int,
     email varchar
