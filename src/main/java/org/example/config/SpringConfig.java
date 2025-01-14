@@ -26,18 +26,6 @@ import javax.sql.DataSource;
 @PropertySource("classpath:database.properties")
 public class SpringConfig implements WebMvcConfigurer {
 
-    @Value("${db.url}")
-    private String dbUrl;
-
-    @Value("${db.username}")
-    private String dbUsername;
-
-    @Value("${db.password}")
-    private String dbPassword;
-
-    @Value("${db.driver}")
-    private String dbDriver;
-
     private final ApplicationContext applicationContext;
     private final Environment environment;
 
@@ -76,29 +64,19 @@ public class SpringConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public DataSource dataSource() {
+    public DataSource dateSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
-        dataSource.setDriverClassName(dbDriver);
-        dataSource.setUrl(dbUrl);
-        dataSource.setUsername(dbUsername);
-        dataSource.setPassword(dbPassword);
-
-//         dataSource.setDriverClassName(environment.getProperty("driver"));
-//         dataSource.setUrl(environment.getProperty("url"));
-//         dataSource.setUsername(environment.getProperty("username"));
-//         dataSource.setPassword(environment.getProperty("password"));
-
-//        dataSource.setDriverClassName("org.postgresql.Driver");
-//        dataSource.setUrl("jdbc:postgresql://localhost:5432/first_db");
-//        dataSource.setUsername("postgres");
-//        dataSource.setPassword("297032");
+         dataSource.setDriverClassName(environment.getProperty("db.driver"));
+         dataSource.setUrl(environment.getProperty("db.url"));
+         dataSource.setUsername(environment.getProperty("db.username"));
+         dataSource.setPassword(environment.getProperty("db.password"));
 
         return dataSource;
     }
 
     @Bean
     public JdbcTemplate jdbcTemplate() {
-        return new JdbcTemplate(dataSource());
+        return new JdbcTemplate(dateSource());
     }
 }
