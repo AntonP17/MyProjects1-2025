@@ -4,9 +4,10 @@ import org.example.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
-import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,11 +46,10 @@ public class PersonDAO {
 
     public void save(Person person) {
 
-        jdbcTemplate.update("INSERT INTO Person VALUES(1, ?, ?, ?)" , person.getName(), person.getAge(),
-                person.getEmail());
+        jdbcTemplate.update("INSERT INTO Person (name, age, email) VALUES (?, ?, ?)",
+                person.getName(), person.getAge(), person.getEmail());
+        // сделал автоинкремент , теперь id будет автоматически увеличиваться
 
-//        jdbcTemplate.update("INSERT INTO Person2(name, age, email) VALUES(?, ?, ?)", person.getName(), person.getAge(),
-//                person.getEmail()); сохраняем в таблицу 2
 
     }
 
@@ -66,9 +66,6 @@ public class PersonDAO {
         jdbcTemplate.update("DELETE FROM Person WHERE id = ?", id);
 
     }
-
-
-
 
     // поиск нескольких по 1 конкретному параметру , можно не только возраст а любой например по имени
     // (в sql можно указать сколько угодно колонок хоть name = ?, id = ?, email = ? )
@@ -87,6 +84,8 @@ public class PersonDAO {
     }
 
     // TEST TEST TEST пример использования
+    //данный код вообще можно запихнуть в контроллер , в метод пост
+    // создать для него форму thymeleaf и отправить на него данные
     public void test()
     {
         PersonDAO personDAO = null;
