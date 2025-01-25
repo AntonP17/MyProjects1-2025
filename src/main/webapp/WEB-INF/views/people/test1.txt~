@@ -101,4 +101,3 @@ CREATE INDEX index_name ON table_name (column_name);
 КАСКАДИРОВАНИЕ
 Если первичный ключ родительской таблицы удаляется , то и удаляется связанные внешние ключи
 Если обновляется то так же
-синтакис : ON DELETE CASCADE / ON UPDATE CASCADE
